@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击倒计时</title>
+</head>
+<body>
+	<input type="text"/>
+	<button id="btn">点击发送短信</button>
+</body>
+</html>
+<script type="text/javascript">
+	var btn = document.getElementById("btn");
+	var count = 10;
+	var timer = null;
+	btn.onclick = function() {
+		clearInterval(timer);
+		this.disabled = true;
+		var that = this;
+		timer = setInterval(sendTextMessage,1000);
+		function sendTextMessage() {
+			count --;
+			if(count >= 0){
+				that.innerHTML = "剩余时间"+count;
+			}
+			else{
+				that.innerHTML = "重新发送短信";
+				that.disabled = false;
+				clearInterval(timer);
+				count = 10;
+			}
+		}
+		
+	}
+</script>

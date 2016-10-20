@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>offsetWidth</title>
+	<style type="text/css">
+		#demo{
+			width: 300px;
+			/*height: 300px;*/
+			border:1px solid #000;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="demo" style="width: 300px;">
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+		呵呵呵呵呵呵好玩撒入是否
+	</div>
+</body>
+<script type="text/javascript">
+	var demo = document.getElementById("demo");
+	console.log(demo.style.width); //只能获取行内的width
+	console.log(demo.offsetWidth);
+	console.log(demo.offsetHeight);
+</script>
+</html>

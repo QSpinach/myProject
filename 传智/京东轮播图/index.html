@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东轮播图</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		ul li{
+			list-style: none;
+		}
+		.box{
+			width: 730px;
+			height: 454px;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.circle{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			margin-left: -50px;
+		}
+		.circle span{
+			float: left;
+			width: 18px;
+			height: 18px;
+			border-radius: 18px;
+			background-color: pink;
+			line-height: 18px;
+			margin-right: 10px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.circle span.current{
+			background-color: purple;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function() {
+			var scroll = document.getElementById("scroll");
+			var circle = document.createElement("div");
+			// circle.className = "circle";
+			circle.setAttribute("class","circle");
+			scroll.appendChild(circle);
+			var ul = document.getElementById("ul");
+			var lis = ul.children;
+			// alert(lis.length);
+			var span = null;
+			for (var i = 1; i < lis.length+1; i++) {
+				span = document.createElement("span");
+				span.innerText = i;
+				circle.appendChild(span);
+			}
+			var child = circle.children;
+			child[0].setAttribute("class","current");
+		}
+	</script>
+</head>
+<body>
+	<div class="box" id="scroll">
+		<div class="slider">
+			<ul id="ul">
+				<li><img src="image/11.jpg" alt=""></li>
+				<li><img src="image/22.jpg" alt=""></li>
+				<li><img src="image/33.jpg" alt=""></li>
+				<li><img src="image/44.jpg" alt=""></li>
+				<li><img src="image/55.jpg" alt=""></li>
+				<li><img src="image/66.jpg" alt=""></li>
+			</ul>
+		</div>
+		<!-- <div class="circle">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>
+			<span>6</span>
+		</div> -->
+	</div>
+</body>
+</html>

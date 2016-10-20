@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>匀速运动封装</title>
+	<style type="text/css">
+		
+		#box1{
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+			position: absolute;
+			
+		}
+	</style>
+</head>
+<body>
+<button id="btn1">200</button>
+	<div id="box1"></div>
+</body>
+<script type="text/javascript">
+	var btn200 = document.getElementById("btn1");
+	var box1 = document.getElementById("box1");
+
+	btn200.onclick = function() {
+		animate(box1,400);
+	}
+	function animate(obj,target){
+		var speed = obj.offsetLeft < target ? 5:-5;
+		obj.timer = setInterval(function() {
+			// console.log(obj.offsetLeft);
+			// console.log(target);
+            var result = target - obj.offsetLeft; // 因为他们的差值不会超过5
+              obj.style.left = obj.offsetLeft + speed + "px";
+              if(Math.abs(result)<=5)  // 如果差值不小于 5 说明到位置了
+              {
+                  clearInterval(obj.timer);
+                  obj.style.left = target + "px";  // 有5像素差距  我们直接跳转目标位置
+              }
+
+        },30);
+	};
+</script>
+</html>

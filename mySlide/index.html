@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>slide</title>
+	<style type="text/css">
+	ul,li,div{
+		margin:0;
+		padding: 0;
+	}
+		.banner{
+			width: 500px;
+			height: 500px;
+			position: relative;
+			/*background: pink;*/
+			margin:0 auto;
+		}
+		.slide{
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.slide1{
+			width: 100%;
+			height: 100%;
+			background: #34F648;
+			transition: all 1s;
+			opacity: 1;
+			-moz-transition: all 1s;
+			-webkit-transition: all 1s;
+			-o-transition: all 1s;
+		}
+		.slide2{
+			width: 100%;
+			height: 100%;
+			background: #34ECF6;
+			transition: all 1s;
+			-moz-transition: all 1s;
+			-webkit-transition: all 1s;
+			-o-transition: all 1s;opacity:0.2;
+		}
+		.slide3{
+			width: 100%;
+			height: 100%;
+			background: #FF75FE;
+			transition: all 1s;
+			-moz-transition: all 1s;
+			-webkit-transition: all 1s;
+			-o-transition: all 1s;opacity: 0.2;
+		}
+		.slide4{
+			width: 100%;
+			height: 100%;
+			background: #FECE3F;
+			transition: all 1s;
+			-moz-transition: all 1s;
+			-webkit-transition: all 1s;
+			-o-transition: all 1s;opacity: 0.2;
+		}
+		.nav{
+			width: 200px;
+			margin:0 auto;
+			background: rgba(120,120,120,0.4);
+			border-radius: 30px;
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			margin-left: -100px;
+		}
+		.nav ul{
+			text-align: center;
+			list-style: none;
+			padding:10px;
+		}
+		.nav ul li.noactive{
+			width: 30px;
+			height: 30px;
+			border-radius:30px;
+			background: #FFF;
+			display: inline-block;
+		}
+		.active{
+			width: 30px;
+			height: 30px;
+			border-radius:30px;
+			display: inline-block;
+			background: #FFB188;
+		}
+	</style>
+</head>
+<body>
+	<div class="banner">
+		<div class="slide" id="slide">
+			<div class="slide1">1</div>
+			<div class="slide2">2</div>
+			<div class="slide3">3</div>
+			<div class="slide4">4</div>
+		</div>
+		<div class="nav" id="nav">
+			<ul>
+				<li class="active"></li>
+				<li class="noactive"></li>
+				<li class="noactive"></li>
+				<li class="noactive"></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var nav = document.getElementById('nav');
+		var lis = nav.getElementsByTagName('li');
+		var slides = document.getElementById('slide').getElementsByTagName('div');
+		for (var i = 0; i < lis.length; i++) {
+			lis[i].index = i;
+			lis[i].onclick = function() {
+				for (var j = 0; j < lis.length; j++) {
+					lis[j].className = 'noactive';
+				}
+				this.className = 'active';
+				for (var k = 0; k < slides.length; k++) {
+					setTimeout("slides["+k+"].style.opacity = '0.2'",0);
+					slides[k].style.display = 'none';
+					// $(slides[k]).fadeOut('slow');
+				}
+				setTimeout("slides["+this.index+"].style.opacity = '1'",0);
+				slides[this.index].style.display = 'block';
+				// $(slides[this.index]).fadeIn('slow');
+			}
+		}
+	</script>
+	<!-- <script src="jquery-2.2.0.min.js"></script> -->
+</body>
+</html>

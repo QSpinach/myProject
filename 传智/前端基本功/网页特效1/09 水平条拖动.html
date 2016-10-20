@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>水平条拖动</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.scroll{
+			width: 400px;
+			height: 8px;
+			background-color: #ccc;
+			margin: 100px;
+			position: relative;
+		}
+		.bar{
+			width: 10px;
+			height: 22px;
+			background-color: #369;
+			position: absolute;
+			top: -7px;
+			left: 0;
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="scroll" id="scroll">
+		<div class="bar">2sdfdsfsfsf3</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var scrollBar = document.getElementById("scroll");
+	var bar = scrollBar.children[0];
+	bar.onmousedown = function(event) {
+		var event = event || window.event;
+			 var level = event.clientX - this.offsetLeft ;
+		document.onmousemove = function(event) {
+			var event = event || window.event;
+			window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();//防止选择拖动
+			if (event.clientX - level < 0) {
+				bar.style.left = 0 +"px";
+			} else if(event.clientX - level > 400){
+				bar.style.left = scrollBar.offsetWith;
+			}
+			else {
+				bar.style.left = event.clientX - level + "px";
+			}
+		}
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		};
+		
+	};
+</script>
+</html>

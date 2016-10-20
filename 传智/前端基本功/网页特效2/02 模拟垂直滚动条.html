@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟垂直滚动条</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 300px;
+			height: 500px;
+			border: 1px solid red;
+			margin:100px;
+			position: relative;
+			overflow: hidden;
+		}
+		.content{
+			height: auto;
+			/*padding-right: 20px;*/
+			padding: 5px 20px 5px 5px;
+			position: absolute;
+		}
+		.scroll{
+			width: 20px;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: #eee;
+		}
+		.bar{
+			width: 100%;
+			height: 100px;
+			background-color: red;
+			cursor: pointer;
+			border-radius: 10px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="content">
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒呵呵哒
+			
+		</div>
+		<div class="scroll">
+			<div class="bar"></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var box = document.getElementById("box");
+	var content = box.children[0];
+	var scroll = box.children[1];
+	var bar = scroll.children[0];
+
+	var barHeight = box.offsetHeight/content.offsetHeight*box.offsetHeight;
+	bar.style.height = barHeight + "px";
+
+	startScroll(bar,content,scroll,box);
+	function startScroll(obj,target,scroll,box) {
+		obj.onmousedown = function(event) {
+			var event = event || window.event;
+			var t = event.clientY - this.offsetTop;
+			var that = this;
+			document.onmousemove = function(event) {
+				var event = event || window.event;
+				var barTop = event.clientY -t;//红色盒子移动距离
+				var contentTop = barTop*(target.offsetHeight - box.offsetHeight)/(scroll.offsetHeight - that.offsetHeight);//内容盒子移动距离
+				if (barTop < 0) {
+					barTop = 0;
+				} else if(barTop > box.offsetHeight - that.offsetHeight){
+					barTop = box.offsetHeight - that.offsetHeight;
+				}
+				else{
+					//内容滑动（内容盒子高度 -  大盒子高度） /  (大盒子高度 - 红色盒子的高度)   * 红色盒子移动的数值
+					target.style.top = -contentTop + "px";
+				}
+				that.style.top = barTop + "px";
+				
+				window.getSelection ? window.getSelection().removeAllRanges():document.selection.empty();
+			}
+		}
+		document.onmouseup = function() {
+			document.onmousemove = null;
+		}
+	}
+</script>
+</html>
