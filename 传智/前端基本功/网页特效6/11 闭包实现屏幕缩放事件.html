@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包实现屏幕缩放事件</title>
+</head>
+<body>
+	<div id="demo"></div>
+</body>
+<script type="text/javascript">
+	var num=0;
+	var demo = document.getElementById("demo");
+	window.onresize = throttle(function(){
+		demo.innerHTML = window.innerWidth || document.documentElement.clientWidth;
+	},300);
+	function throttle(fn,delay) {//闭包  节流
+		var timer = null;
+		return function() {
+			clearTimeout(timer);
+			timer = setTimeout(fn,delay);
+		}
+	}
+</script>
+</html>
